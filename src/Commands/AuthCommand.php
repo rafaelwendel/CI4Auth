@@ -71,7 +71,7 @@ class AuthCommand extends BaseCommand
         $publisher = new Publisher($source, $destination);
         $publisher->addFiles([$source . '/AuthConfig.php']);
         try {
-            if ($publisher->publish()) {
+            if ($publisher->copy(true)) {
                 CLI::write(CLI::color('File created: APPPATH\Config\AuthConfig.php', 'green'));
                 CLI::write(CLI::color('CI4Auth install finished.', 'green'));
             } else {
