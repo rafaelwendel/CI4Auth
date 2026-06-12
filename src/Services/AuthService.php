@@ -50,7 +50,7 @@ class AuthService
     public function __construct()
     {
         $this->session = service('session');
-        $this->authConfig = config('AuthConfig');
+        $this->authConfig = config('AuthConfig') ?? new \CI4Auth\Config\BaseAuthConfig();
 
         if ($this->validateAuthConfig()) {
             $this->authModel = model($this->authConfig->authModel);
