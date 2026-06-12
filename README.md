@@ -23,7 +23,7 @@
 ## Requirements
 
 *   PHP 8.0 or higher
-*   CodeIgniter 4.0 or higher
+*   CodeIgniter 4.1.0 or higher
 
 ---
 
