@@ -29,7 +29,7 @@ class AuthFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $authService = service('auth');
-        $authConfig = config('AuthConfig');
+        $authConfig = $authService->getAuthConfig();
         $session = service('session');
 
         if (!$authService->isLoggedIn()) {
