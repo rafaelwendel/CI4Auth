@@ -50,12 +50,27 @@ class AuthService
     public function __construct()
     {
         $this->session = service('session');
-        $this->authConfig = config('AuthConfig') ?? new \CI4Auth\Config\BaseAuthConfig();
+
+        try {
+            $this->authConfig = config('AuthConfig');
+        } catch (\Throwable $e) {
+            $this->authConfig = new \CI4Auth\Config\BaseAuthConfig();
+        }
 
         if ($this->validateAuthConfig()) {
             $this->authModel = model($this->authConfig->authModel);
             $this->findUserMethod = $this->authConfig->findUserMethod;
         }
+    }
+
+    /**
+     * Gets the active authentication configuration instance.
+     *
+     * @return \CI4Auth\Config\BaseAuthConfig The configuration instance.
+     */
+    public function getAuthConfig()
+    {
+        return $this->authConfig;
     }
 
     /**
